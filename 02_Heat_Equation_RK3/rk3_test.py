@@ -7,23 +7,23 @@ import matplotlib.pyplot as plt
 # 要用FDM的思想去理解index，计算域共nx+1个点，且首尾用作ghost cells
 
 def rk3(nx, nt, dx, dt, u, alpha):
-    un, ut, LU = np.zeros(nx + 1), np.zeros(nx + 1), np.zeros(nx + 1)
+    #un, ut, LU = np.zeros(nx + 1), np.zeros(nx + 1), np.zeros(nx + 1)
     un = u[0, :].copy()
     k = 0  # record index
     # dirichlet boundary condition for temporary array
-    ut[0] = 0.0
-    ut[-1] = 0.0
+    #ut[0] = 0.0
+    #ut[-1] = 0.0
 
     for i in range(1, nt + 1):
         # 1st step
         LU = get_LU(dx, un, alpha)
-        ut[1:-1] = un[1:-1] + dt * LU[1:-1]
+        ut = un + dt * LU
         # 2nd step
         LU = get_LU(dx, ut, alpha)
-        ut[1:-1] = 0.75 * un[1:-1] + 0.25 * ut[1:-1] + 0.25 * dt * LU[1:-1]
+        ut = 0.75 * un + 0.25 * ut + 0.25 * dt * LU
         # 3rd step
         LU = get_LU(dx, ut, alpha)
-        un[1:-1] = (1.0 / 3.0) * un[1:-1] + (2.0 / 3.0) * ut[1:-1] + (2.0 / 3.0) * dt * LU[1:-1]
+        un = (1.0 / 3.0) * un + (2.0 / 3.0) * ut + (2.0 / 3.0) * dt * LU
 
 
         k+=1
