@@ -42,3 +42,19 @@ cc = [1,2,3,4,5,6,7,8,9,10]
 print(len(cc),cc[3], cc[-1], "定位")
 for i in range(1, len(cc)-2):
     print(cc[i])
+
+cc2=0.5*np.power(cc,2)
+print(cc2)
+
+print("--------")
+
+def get_wavespeed(u):
+    alpha = np.zeros_like(u)
+    for i in range(3,len(u)-3):  # 从index=3开始，index=-4结束（包含2和-4）
+        alpha[i] = max(abs(u[i-2]),abs(u[i-1]),abs(u[i]),abs(u[i+1]),abs(u[i+2]))
+    return alpha
+
+u = [3,-4,5,-6,7,-4,3,4,5,-6,7,8,9,4,-3,3,-5,6]
+
+aaa = get_wavespeed(u)
+print(aaa)

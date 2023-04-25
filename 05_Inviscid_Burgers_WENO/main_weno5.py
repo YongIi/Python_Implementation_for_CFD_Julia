@@ -16,21 +16,19 @@ import numpy as np
 from rk3 import rk3
 import matplotlib.pyplot as plt
 
-# from weno5_scheme import weno5_reconstruction
-# from rk3 import rk3
-
 # 要用FDM的思想去理解index，计算域共nx+1+2*ghost_cells_n个点，且首尾用作ghost cells
 
 ghost_cells_n = 2  # 理应采用3个ghost cells，但是第一个物理网格是固定值边界
 
 x_l, x_r, t = 0, 1, 0.25
-nx = 200
+nx = 150
 dt = 0.0001
 dx = (x_r - x_l) / nx
 nt = int(t / dt)
 
 # index for x
 # [-2, -1, 0, 1,... ,N-1,N, N+1, N+2]
+# [ 0,  1, 2, 3,... ,-4,-3, -2, -1]  # corresponding python index
 x = np.linspace(x_l - ghost_cells_n * dx, x_r + ghost_cells_n * dx, nx + 1 + 2 * ghost_cells_n)
 u = np.zeros((nt+1, nx + 1 + 2 * ghost_cells_n))
 # print(len(x),len(u[0]))
@@ -48,6 +46,7 @@ u[0, -2] = 2*u[0,-3]-u[0,-4]
 rk3(u,nt,dt,dx,"dirichlet_BC")  # 不需要等号赋值
 # rk3(u,nt,dt,dx,"periodic_BC")  # 采用周期性边界条件
 
+# postProcessing
 ts = np.linspace(0.025, 0.25, 10)
 plt.figure(figsize=(6, 4), dpi=100)
 for i, t_stamp in enumerate(ts):  # 用enumerate函数来循环ts数组中的元素，并获取每个元素的下标和值
