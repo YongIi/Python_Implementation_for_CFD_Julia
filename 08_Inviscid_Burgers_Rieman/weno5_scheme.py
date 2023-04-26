@@ -24,7 +24,7 @@ def weno5L(u):  # uL at i+1/2 很多时候要用u[i-1]
 
 def weno5R(u):  # uR at i-1/2
     uR = np.zeros_like(u)
-    for i in range(3, len(u) - 2):  # uR从index=3开始更新，index=-3结束（包含3和-3）
+    for i in range(3, len(u) - 2):  # # uR从index=3开始更新，index=-3结束（包含3和-3）
         uR[i] = weightsR(u[i - 2], u[i - 1], u[i], u[i + 1], u[i + 2])
         # uR[i] = weights(u[i + 2], u[i + 1], u[i], u[i - 1], u[i - 2])  # 用于验证通用函数weights，貌似效果还行
     return uR

@@ -33,7 +33,7 @@ def weno5R(u):
 
 """
 # 其实根据对称性，weightsL和weightsR可以写成同一个函数
-可参考https://github.com/fengyiqi/cfd_practice/blob/main/jupyter/05_Inviscid_Burgers_WENO/weno5_scheme_test.py
+可参考https://github.com/fengyiqi/cfd_practice/blob/main/jupyter/05_Inviscid_Burgers_WENO/weno5_scheme.py
 但本程序为了良好的阅读性写成了两个函数，且有一定的可扩展性，方便扩展不对称的权重函数
 合成同一个函数的weights写在更下方，初步验证效果不错，但正确性需要进一步验证
 """
