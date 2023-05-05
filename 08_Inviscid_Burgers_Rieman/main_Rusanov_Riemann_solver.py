@@ -3,6 +3,8 @@
 
 # Inviscid Burgers Equation: Conservative Form
 
+# rusanov riemann solver using rk3 and weno5
+
 """
 du/dt+df/dx=0  where f=u^2/2
 

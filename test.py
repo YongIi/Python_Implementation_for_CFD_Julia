@@ -58,3 +58,24 @@ u = [3,-4,5,-6,7,-4,3,4,5,-6,7,8,9,4,-3,3,-5,6]
 
 aaa = get_wavespeed(u)
 print(aaa)
+
+for i in range(3):
+    print(i)
+
+oo = [7,5,44,2,8,5,4,5,7,4,6,9,5,7,6,5,7,4]
+for i in range(0,3):
+    print(oo[i])
+print("---")
+def BC(hh):
+    for i in range(len(hh) - 3, len(hh)):
+        hh[i] = 0
+        print(hh[i])
+
+BC(oo)
+print(oo)
+
+c1 = [0,1,2,3,4]
+print(len(c1))
+
+for i in range(3):
+    print(i)
